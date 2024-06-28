@@ -21,6 +21,5 @@ Content-Type: application/json
 { 
     "titulo": "Estudar Node.js ALTERADO",
     "descricao": "Estudar Node.js para desenvolver aplicações web ALTERADO",
-    "categoriaId": "39be53a2-fc09-4b6a-bafa-18a6a23c8f6e"
 }
 

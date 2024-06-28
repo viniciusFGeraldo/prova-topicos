@@ -2,7 +2,7 @@ export interface Tarefa{
     tarefaId?: string;
     titulo: string;
     descricao: string;
-    categoriaId: number;
+    categoriaId?: number;
     criadoEm?: Date;
     status?: string;
 

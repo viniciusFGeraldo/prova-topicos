@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { Tarefa } from '../models/Tarefa';
-import { Categoria } from '../models/Categoria';
 import { useParams, useNavigate } from "react-router-dom";
 import axios from 'axios';
 
@@ -8,16 +7,14 @@ function TarefaAlterar() {
     const { tarefaId } = useParams<{ tarefaId: string }>();
     const [titulo, setTitulo] = useState<string>('');
     const [descricao, setDescricao] = useState<string>('');
-    const [categoriaId, setCategoriaId] = useState<number>(0);
-    const [categorias, setCategorias] = useState<Categoria[]>([]);
+
 
   useEffect(() => {
     if (tarefaId) {
-      axios.get<Tarefa>(`http://localhost:5000/tarefas/buscar/{${categoriaId}`)
+      axios.get<Tarefa>(`http://localhost:5000/tarefas/buscar/{${tarefaId}`)
         .then((resposta) => {
             setTitulo(resposta.data.titulo);
             setDescricao(resposta.data.descricao);
-            setCategoriaId(resposta.data.categoriaId);
         })
         .catch((error) => console.error('Erro ao buscar o tarefa:', error));
     }
@@ -29,7 +26,6 @@ function TarefaAlterar() {
     const tarefaAtualizado: Tarefa = {
         titulo: titulo,
         descricao: descricao,
-        categoriaId: categoriaId
     };
 
     fetch(`http://localhost:5000/tarefas/alterar/${tarefaId}`, {
@@ -63,15 +59,6 @@ function TarefaAlterar() {
                   <input type="text" value={descricao} className="form-control" onChange={(e: any) => {setDescricao(e.target.value)}} required />
                   
               </div>
-              <label>Categorias:</label>
-
-                            <select onChange={(e: any) => setCategoriaId(e.target.value)}>
-                                {categorias.map((categoria) => (
-                                    <option value={categoria.categoriaId} key={categoria.categoriaId}>
-                                    {categoria.nome}
-                                    </option>
-                                ))}
-                           </select>
               <div className="text-center">
                   <button type="submit" className="btn btn-success mt-3 w-50">Salvar Alterações</button>
               </div>  

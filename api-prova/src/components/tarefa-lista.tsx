@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Tarefa } from "../models/Tarefa";
 import { format } from 'date-fns';
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 function TarefaListar() {
     const [tarefa, setTarefa] = useState<Tarefa[]>([]);
@@ -33,6 +34,7 @@ function TarefaListar() {
                                 <th>categoriaId</th>
                                 <th>Criado Em</th>
                                 <th>status</th>
+                                <th>Ações</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -44,6 +46,7 @@ function TarefaListar() {
                                     <td>{tarefa.categoriaId}</td>
                                     <td>{tarefa.criadoEm ? format(new Date(tarefa.criadoEm), 'dd/MM/yyyy') : 'N/A'}</td>
                                     <td>{tarefa.status}</td>
+                                    <Link to={`/tarefa/alterar/${tarefa.tarefaId}`}></Link>
                                 </tr>
                             ))}
                         </tbody>

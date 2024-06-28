@@ -82,7 +82,6 @@ app.MapPut("/tarefas/alterar/{id}", ([FromServices] AppDataContext ctx, [FromBod
 
     tarefa.Titulo = tarefaAlterada.Titulo;
     tarefa.Descricao = tarefaAlterada.Descricao;
-    tarefa.CategoriaId = tarefaAlterada.CategoriaId;
 
     ctx.Tarefas.Update(tarefa);
     ctx.SaveChanges();
@@ -101,4 +100,5 @@ app.MapGet("/tarefas/concluidas", ([FromServices] AppDataContext ctx) =>
     //Implementar a listagem de tarefas concluídas
 });
 
+app.UseCors("Acesso Total");
 app.Run();
