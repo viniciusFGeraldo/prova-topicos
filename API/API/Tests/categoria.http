@@ -1,0 +1,12 @@
+@baseUrl = http://localhost:5000
+
+### Listar todas as categorias
+GET {{baseUrl}}/categoria/listar
+
+### Cadastrar uma categoria
+POST {{baseUrl}}/categoria/cadastrar
+Content-Type: application/json
+
+{
+    "nome": "Pessoal"
+}
